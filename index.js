@@ -8,7 +8,7 @@ const code = fs.readFileSync(__dirname + '/index.pug');
 
 const html = pug.render(code, {
   plugins: [{
-    postParse(ast) {
+    postParse: function (ast) {
       return walk(ast, (node) => {
         if (node.type === 'Text') {
           node.val = i18n.t(node.val);
